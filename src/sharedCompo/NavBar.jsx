@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
 import defaultImage from '../assets/user.png'
+import { useContext } from "react";
+import { UserContext } from "../Context/AuthContext";
 
 
 function NavBar() {
+
+    const {user, logout} = useContext(UserContext)
 
     const links = <>
         <li><Link to={"/"}>Home</Link></li>
         <li><Link to={"/about"}>About</Link></li>
         <li><Link to={"/career"}>Career</Link></li>
     </>
+
+
 
     return (
         <div>
@@ -34,7 +40,10 @@ function NavBar() {
                 </div>
                 <div className="navbar-end">
                   <img className="w-10 rounded-full mr-4" src={defaultImage} alt="User" />
-                  <button className="btn bg-gray-800 text-white px-8">Login</button>
+                  <Link onClick={logout}
+                   to={user ? "/" : "/login"} 
+                  className="btn bg-gray-800 text-white px-8">
+                    {user ? 'Logout' : 'Login'}</Link>
                 </div>
             </div>
         </div>

@@ -2,19 +2,19 @@ import { FaGoogle , FaGithub, FaFacebook, FaTwitter, FaInstagram} from 'react-ic
 import q1 from '../assets/qZone1.png'
 import q2 from '../assets/qZone2.png'
 import q3 from '../assets/qZone3.png'
-import q4 from '../assets/bg1.png'
-import q5 from '../assets/1.png'
-import q6 from '../assets/editorsInsight2.png'
-import q7 from '../assets/editorsInsight3.png'
+import { useContext } from 'react';
+import { UserContext } from '../Context/AuthContext';
 
 function RightSideBar() {
+
+    const { user } = useContext(UserContext)
     
     return(
-<div className='p-2  space-y-10 md:sticky top-0 right-0'>
+<div className={`p-2 md:sticky top-0 right-0 ${user ? 'space-y-0' : 'space-y-10'}`}>
 
     
     {/* login with goole and github */}
-    <section className='space-y-3 '>
+    <section className={`space-y-3 ${user && 'hidden'}`}>
     <h3 className='text-xl'>Login With</h3>
 
     {/* login with google */}
@@ -77,10 +77,6 @@ function RightSideBar() {
     <img src={q1} alt="" />
     <img src={q2} alt="" />
     <img src={q3} alt="" />
-    <img src={q4} alt="" />
-    <img src={q5} alt="" />
-    <img src={q6} alt="" />
-    <img src={q7} alt="" />
     </section>
 
 </div>
